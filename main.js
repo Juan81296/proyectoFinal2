@@ -94,18 +94,30 @@ simular.addEventListener("click", function(){
     })
 
        
+class usuario{
+    constructor(email,password){
+        this.email = email;
+        this.password = password;
+    }
+}
+let usuarioRegistrado = [];
+
 let registro = document.getElementById("registrarse");
 
 registro.addEventListener("click", function(){
 
     
-    let email = document.getElementById("email");
-    let password = document.getElementById("password");
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
 
+    let nuevoUsuario =new usuario(email,password);
+    usuarioRegistrado.push(nuevoUsuario);
     
-        localStorage.setItem("mail", email.value);
-        localStorage.setItem("Contraseña", password.value);
+        ususarioJSON = JSON.stringify(usuarioRegistrado);
+        localStorage.setItem("1",ususarioJSON);
     
 })
+
+
  
  
