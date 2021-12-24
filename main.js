@@ -36,6 +36,14 @@ let simular = $("#simular").on("click", function(){
     
     })
 
+//Boton borrar simulacion
+
+$("#btnBorrar").click(function(){
+
+    $("#lista").fadeOut();
+    $("#mensaje").fadeOut();
+})
+
 
 
 //Evento simular devolución.
@@ -75,6 +83,13 @@ let simular = $("#simular").on("click", function(){
     
         })
 
+//Borrar devolucion:
+$("#btnBorrar2").click(function(){
+
+    $("#div").fadeOut();
+    
+})
+
 class usuario{
     constructor(email,password){
         this.email = email;
@@ -98,5 +113,45 @@ let registro = $("#registrarse").on("click", function(){
 })
 
 
- 
- 
+/*GEOLOCATION*/
+    let ubicacion = navigator.geolocation.getCurrentPosition(mostrarUbicacion);
+
+    function mostrarUbicacion(position){
+
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+
+            
+    let clima = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=f4b9fc257be5d1f6e38ddb93d1edfb3f&lang=es`;
+
+     $("#btnClima").click(function(){
+
+
+    $.get(clima, function(datos){
+
+    console.log(datos);
+
+    let resultado =   `<div>
+                            <h2>${datos.name}</h2>
+                            <h2>Estado del clima: ${datos.weather[0].description}</h2>
+                            <h2>Temperatura: ${datos.main.temp}</h2>
+                            <h2>Humedad: ${datos.main.humidity}%</h2>
+                            
+
+
+
+
+                        </div>`
+    
+    $("#informacionClima").append(resultado);
+
+    });
+
+    });
+
+
+    }
+
+/*CLIMA*/
+
+
